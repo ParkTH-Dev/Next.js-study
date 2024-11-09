@@ -5,7 +5,6 @@ import styles from "./navigation.module.css";
 
 const Navigation = () => {
   const path = usePathname();
-
   return (
     <nav className={styles.nav}>
       <ul>
@@ -14,7 +13,7 @@ const Navigation = () => {
           {path === "/" ? "⭐️" : ""}
         </li>
         <li>
-          <Link href="/about-us">About Us</Link>{" "}
+          <Link href="/about-us">About Us</Link>
           {path === "/about-us" ? "⭐️" : ""}
         </li>
       </ul>

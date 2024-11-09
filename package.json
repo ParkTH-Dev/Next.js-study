@@ -10,7 +10,6 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "description": "",
   "dependencies": {
     "eslint-config-next": "^15.0.3",
     "next": "^14.2.17",
