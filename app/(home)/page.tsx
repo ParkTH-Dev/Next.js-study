@@ -1,4 +1,5 @@
-import Link from "next/link";
+import Movie from "../../components/movie/movie";
+import styles from "./home.module.css";
 
 export const metadata = {
   title: "Home",
@@ -7,7 +8,6 @@ export const metadata = {
 export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovie() {
-  // await new Promise((resolve) => setTimeout(resolve, 500));
   const response = await fetch(API_URL);
   const json = await response.json();
   return json;
@@ -16,14 +16,15 @@ async function getMovie() {
 export default async function Page() {
   const movies = await getMovie();
   return (
-    <>
-      <div>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link href={`/movies/${movie.id}`}>{movie.title}</Link>
-          </li>
-        ))}
-      </div>
-    </>
+    <div className={styles.container}>
+      {movies.map((movie) => (
+        <Movie
+          key={movie.id}
+          id={movie.id}
+          poster_path={movie.poster_path}
+          title={movie.title}
+        />
+      ))}
+    </div>
   );
 }
