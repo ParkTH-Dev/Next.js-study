@@ -3,7 +3,8 @@ import styles from "./movie-video.module.css";
 
 async function getVideos(id: string) {
   const response = await fetch(`${API_URL}/${id}/videos`);
-  return response.json();
+  const data = await response.json();
+  return data.slice(0, 9);
 }
 
 const MovieVideo = async ({ id }: { id: string }) => {
@@ -11,13 +12,15 @@ const MovieVideo = async ({ id }: { id: string }) => {
   return (
     <div className={styles.container}>
       {videos.map((video) => (
-        <iframe
-          key={video.id}
-          src={`https://www.youtube.com/embed/${video.key}`}
-          title={video.name}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <div key={video.id} className={styles.videoWrapper}>
+          <iframe
+            src={`https://www.youtube.com/embed/${video.key}`}
+            title={video.name}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+          <div className={styles.videoTitle}>{video.name}</div>
+        </div>
       ))}
     </div>
   );
